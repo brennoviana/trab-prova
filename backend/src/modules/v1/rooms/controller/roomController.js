@@ -1,12 +1,11 @@
 import { roomRepository } from '../repository/roomRepository.js';
 import { ResponseFormatter } from '../../../../utils/success.js';
 import {
-  ValidationError,
   NotFoundError,
-  AuthenticationError,
   DuplicateFieldError,
   ErrorHandler,
 } from '../../../../utils/errors.js';
+import { socketService } from '../../../../services/SocketService.js';
 
 class RoomController {
   async getRooms(req, res) {
@@ -53,6 +52,9 @@ class RoomController {
 
       room.participants.push(req.user.id);
       await roomRepository.update(roomId, { participants: room.participants });
+
+      socketService.emitEvent(room._id,'user-joined', { userId: req.user.id, roomId });
+
       return ResponseFormatter.send(res, room, 'User joined the room successfully.');
     } catch (error) {
       ErrorHandler.formatResponse(res, error);
