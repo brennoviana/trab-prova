@@ -3,19 +3,19 @@ import { Room } from '../model/roomModel.js';
 class RoomRepository {
   async create(userData) {
     try {
-      const user = new Room(userData);
-      await user.save();
-      return user;
+      const room = new Room(userData);
+      await room.save();
+      return room;
     } catch (error) {
-      throw new Error('Error creating user: ' + error.message);
+      throw new Error('Error creating room: ' + error.message);
     }
   }
 
-  async getRooms() {
+  async findAll() {
     try {
-      return await User.find();
+      return await Room.find();
     } catch (error) {
-      throw new Error('Error finding all users: ' + error.message);
+      throw new Error('Error finding all room: ' + error.message);
     }
   }
 }

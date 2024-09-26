@@ -25,13 +25,7 @@ class RoomController {
 
   async createRoom(req, res) {
     try {
-      const { name, capacity } = req.body;
-
-      if (!name || !capacity) {
-        return ErrorHandler.formatResponse(res, new ValidationError('Name and capacity are required.'));
-      }
-
-      const newRoom = await roomRepository.create({ name, capacity, ...req.body });
+      const newRoom = await roomRepository.create(req.body);
 
       return ResponseFormatter.send(res, newRoom, 'Room created successfully.', 201);
     } catch (error) {
