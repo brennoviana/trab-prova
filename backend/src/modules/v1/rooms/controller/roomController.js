@@ -36,6 +36,28 @@ class RoomController {
       ErrorHandler.formatResponse(res, error);
     }
   }
+
+  async joinRoom(req, res) {
+    try {
+      const roomId = req.params.id;
+
+      const room = await roomRepository.findById(roomId);
+      if (!room) {
+        return ErrorHandler.formatResponse(res, new NotFoundError('Room not found'));
+      }
+
+      room.participants = room.participants || [];
+      if (room.participants.includes(req.user.id)) {
+        return ErrorHandler.formatResponse(res, new DuplicateFieldError('User already joined the room'));
+      }
+
+      room.participants.push(req.user.id);
+      await roomRepository.update(roomId, { participants: room.participants });
+      return ResponseFormatter.send(res, room, 'User joined the room successfully.');
+    } catch (error) {
+      ErrorHandler.formatResponse(res, error);
+    }
+  }
 }
 
 const roomController = new RoomController();

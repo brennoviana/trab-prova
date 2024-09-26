@@ -13,4 +13,9 @@ roomRoutes.post(
   roomController.createRoom,
 );
 
+roomRoutes.post(
+  "/:id/join",  
+  roomController.joinRoom
+);
+
 export { roomRoutes };

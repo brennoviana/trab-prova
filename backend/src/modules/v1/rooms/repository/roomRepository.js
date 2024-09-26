@@ -18,6 +18,14 @@ class RoomRepository {
       throw new Error('Error finding all room: ' + error.message);
     }
   }
+
+  async findById(roomId) {
+    return Room.findById(roomId);
+  }
+
+  async update(roomId, updateData) {
+    return Room.findByIdAndUpdate(roomId, updateData, { new: true });
+  }
 }
 
 const roomRepository = new RoomRepository();
