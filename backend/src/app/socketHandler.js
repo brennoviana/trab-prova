@@ -2,8 +2,10 @@ export const socketHandler = (io) => {
     io.on("connection", (socket) => {
       console.log("Novo socket conectado:", socket.id);
   
-      socket.emit("test", "Bem-vindo! Testando evento...");
-  
+      socket.on('test', (data) => {
+        console.log('Evento de teste recebido:', data);
+      });
+              
       socket.on("join-room", (roomId) => {
         console.log(`Socket ${socket.id} entrou na sala ${roomId}`);
         socket.join(roomId);
