@@ -53,7 +53,7 @@ class RoomController {
       room.participants.push(req.user.id);
       await roomRepository.update(roomId, { participants: room.participants });
 
-      socketService.emitEvent(room._id,'user-joined', { userId: req.user.id, roomId });
+      socketService.emitEvent(roomId,'join-room', { userId: req.user.id });
 
       return ResponseFormatter.send(res, room, 'User joined the room successfully.');
     } catch (error) {

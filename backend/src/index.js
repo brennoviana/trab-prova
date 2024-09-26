@@ -2,9 +2,7 @@ import { server } from "./app/app.js";
 import { config } from "./config/env/envConfig.js";
 import { connectToMongo } from "./config/database/dbConfig.js";
 
-
 const PORT = config.portApi;
-
 
 const startServer = async () => {
   try {

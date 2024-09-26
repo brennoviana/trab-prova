@@ -1,15 +1,15 @@
 export const socketHandler = (io) => {
     io.on("connection", (socket) => {
-        
+
       socket.on("join-room", (event) => {
-        socket.join(event.room_id);
-        socket.to(event.room_id).emit(
+        socket.join(event.roomId);
+        socket.to(event.roomId).emit(
             "user-connected", 
-            `Usuário ${socket.id} entrou na sala ${event.room_id}`
+            `Usuário ${event.userid} entrou na sala ${event.roomId}`
         );
 
         socket.on('disconnect', () => {
-            socket.to(event.room_id).emit('user-disconnected', `Usuário ${socket.id} saiu da sala`);
+            socket.to(event.roomId).emit('user-disconnected', `Usuário ${event.userid} saiu da sala`);
           });
       });
     });
