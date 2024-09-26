@@ -5,11 +5,11 @@ export const socketHandler = (io) => {
         socket.join(event.roomId);
         socket.to(event.roomId).emit(
             "user-connected", 
-            `Usuário ${event.userid} entrou na sala ${event.roomId}`
+            `Usuário ${event.userId} entrou na sala ${event.roomId}`
         );
 
         socket.on('disconnect', () => {
-            socket.to(event.roomId).emit('user-disconnected', `Usuário ${event.userid} saiu da sala`);
+            socket.to(event.roomId).emit('user-disconnected', `Usuário ${event.userId} saiu da sala`);
           });
       });
     });

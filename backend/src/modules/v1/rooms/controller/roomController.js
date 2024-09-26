@@ -5,7 +5,6 @@ import {
   DuplicateFieldError,
   ErrorHandler,
 } from '../../../../utils/errors.js';
-import { socketService } from '../../../../services/SocketService.js';
 
 class RoomController {
   async getRooms(req, res) {
@@ -49,11 +48,9 @@ class RoomController {
       if (room.participants.includes(req.user.id)) {
         return ErrorHandler.formatResponse(res, new DuplicateFieldError('User already joined the room'));
       }
-
+      
       room.participants.push(req.user.id);
       await roomRepository.update(roomId, { participants: room.participants });
-
-      socketService.emitEvent(roomId,'join-room', { userId: req.user.id });
 
       return ResponseFormatter.send(res, room, 'User joined the room successfully.');
     } catch (error) {
