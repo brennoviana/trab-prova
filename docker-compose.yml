@@ -5,7 +5,7 @@ services:
     image: mongo:latest
     container_name: mongo_container
     ports:
-      - "27017:27017"
+      - "${MONGO_PORT}:${MONGO_PORT}"
     environment:
       MONGO_INITDB_ROOT_USERNAME: ${MONGO_USERNAME}
       MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASSWORD}
@@ -21,7 +21,7 @@ services:
       context: .
       dockerfile: backend/Dockerfile
     ports:
-      - "3000:3000"
+      - "${PORT_API}:${PORT_API}"
     environment:
       - PORT_API=${PORT_API}
       - MONGO_INITDB_ROOT_USERNAME=${MONGO_USERNAME}
