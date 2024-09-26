@@ -1,9 +1,8 @@
 import express from "express";
-import { userRoutes } from "../modules/v1/users/routes/userRoutes.js";
-import { roomRoutes } from "../modules/v1/rooms/routes/roomRoutes.js";
-import { authenticateJWT } from "../generic-middlewares/authenticateJWT.js";
 import { Server } from "socket.io";
 import { createServer } from "http";
+import { router } from "./routes.js";
+import { socketHandler } from "./socketHandler.js";
 
 const app = express();
 
@@ -11,16 +10,8 @@ const server = createServer(app);
 
 const io = new Server(server)
 
-io.on('connection', (socket) => {
-    console.log('socket connected');
-  
-    socket.emit('test', 'Hello Testing event!');
-});
+socketHandler(io);
 
-app.use(express.json());
+app.use(router);
 
-app.use("/api/v1/users", userRoutes);
-
-app.use("/api/v1/rooms", authenticateJWT, roomRoutes);
-
-export { server }; 
+export { server };
