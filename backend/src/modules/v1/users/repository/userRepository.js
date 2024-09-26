@@ -51,9 +51,8 @@ class UserRepository {
     }
   }
 
-  async comparePassword(userId, candidatePassword) {
+  async comparePassword(user, candidatePassword) {
     try {
-      const user = await this.findById(userId);
       if (!user) {
         throw new Error('User not found');
       }

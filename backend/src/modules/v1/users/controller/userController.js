@@ -49,12 +49,8 @@ class UserController {
 
   async createUser(req, res) {
     try {
-      const hashedPassword = bcrypt.hashSync(req.body.password, 10);
 
-      const newUser = await userRepository.create({
-        ...req.body,
-        password: hashedPassword,
-      });
+      const newUser = await userRepository.create(req.body);
 
       const userWithoutPassword = { ...newUser.toObject(), password: undefined };
 
@@ -109,7 +105,7 @@ class UserController {
         return ErrorHandler.formatResponse(res, new AuthenticationError('Invalid email or password.'));
       }
 
-      const isPasswordValid = await userRepository.comparePassword(user._id, password);
+      const isPasswordValid = await userRepository.comparePassword(user, password);
 
       if (!isPasswordValid) {
         return ErrorHandler.formatResponse(res, new AuthenticationError('Invalid email or password.'));
