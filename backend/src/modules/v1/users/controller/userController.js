@@ -69,7 +69,7 @@ class UserController {
       const updatedUser = await userRepository.update(req.params.id, req.body);
 
       if (updatedUser) {
-        return ResponseFormatter.send(res, null, 'User successfully updated.');
+        return ResponseFormatter.send(res, `User id ${req.params.id}.`, 'User successfully updated.');
       }
 
       return ErrorHandler.formatResponse(res, new ValidationError('Failed to update user.'));
@@ -86,7 +86,7 @@ class UserController {
       const deletedUser = await userRepository.delete(req.params.id);
 
       if (deletedUser) {
-        return ResponseFormatter.send(res, null, 'User successfully deleted.');
+        return ResponseFormatter.send(res, `User id ${req.params.id}.`, 'User successfully deleted.');
       }
 
       return ErrorHandler.formatResponse(res, new NotFoundError('User not found.'));

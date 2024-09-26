@@ -1,4 +1,4 @@
-import { User } from "../model/userModel.js";
+import { userRepository } from "../repository/userRepository.js";
 
 import {
   ValidationError,
@@ -14,7 +14,7 @@ async function validateUserExists(req, res, next) {
       return ErrorHandler.formatResponse(res, new ValidationError("User ID is required."));
     }
 
-    const user = await User.findByPk(userId);
+    const user = await userRepository.findById(userId);
     if (!user) {
       return ErrorHandler.formatResponse(res, new NotFoundError("User not found."));
     }
