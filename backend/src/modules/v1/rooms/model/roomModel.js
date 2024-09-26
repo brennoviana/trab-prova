@@ -20,6 +20,8 @@ const roomSchema = new mongoose.Schema(
     capacity: {
       type: Number,
       required: true,
+      min: 1,
+      max: 100,
     },
     isActive: {
       type: Boolean,
