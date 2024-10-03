@@ -4,7 +4,7 @@ const swaggerOptions = {
     info: {
       title: 'API Trab-Prova',
       version: '1.0.0',
-      description: 'Api documentation for Trab-Prova',
+      description: 'API documentation for Trab-Prova',
     },
     components: {
       securitySchemes: {
@@ -46,6 +46,16 @@ const swaggerOptions = {
             },
           },
         },
+        RoomCreate: {
+          type: 'object',
+          required: ['name'],
+          properties: {
+            name: {
+              type: 'string',
+              description: 'Room name',
+            },
+          },
+        },
       },
     },
     servers: [
@@ -54,7 +64,10 @@ const swaggerOptions = {
       },
     ],
   },
-  apis: ['src/modules/v1/**/routes/userRoutes.js'],
+  apis: [
+    'src/modules/v1/users/routes/userRoutes.js', 
+    'src/modules/v1/rooms/routes/roomRoutes.js'
+  ],
 };
 
 export { swaggerOptions };
