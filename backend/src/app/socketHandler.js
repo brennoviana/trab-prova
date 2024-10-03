@@ -8,6 +8,12 @@ export const socketHandler = (io) => {
             `Usuário ${event.userId} entrou na sala ${event.roomId}`
         );
 
+        socket.on('signal', (data) => {
+          const { roomId, signalData } = data;
+
+          socket.to(roomId).emit('signal', signalData);
+        });
+
         socket.on('disconnect', () => {
             socket.to(event.roomId).emit('user-disconnected', `Usuário ${event.userId} saiu da sala`);
           });
