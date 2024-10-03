@@ -5,7 +5,7 @@ import swaggerUi from 'swagger-ui-express';
 import { userRoutes } from "../modules/v1/users/routes/userRoutes.js";
 import { roomRoutes } from "../modules/v1/rooms/routes/roomRoutes.js";
 import { authenticateJWT } from "../generic-middlewares/authenticateJWT.js";
-import { swaggerOptions } from "../config/swagger/swagger.js";
+import { swaggerOptions } from "../config/swagger/swaggerConfig.js";
 
 const routesHandler = express.Router();
 const swaggerDocs = swaggerJsdoc(swaggerOptions);
