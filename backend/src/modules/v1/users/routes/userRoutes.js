@@ -12,13 +12,13 @@ const userRoutes = Router();
  * @swagger
  * /api/v1/users:
  *   get:
- *     summary: Retorna a lista de usuários
+ *     summary: Returns a list of users
  *     tags: [Users]
  *     security:
  *       - bearerAuth: []
  *     responses:
  *       200:
- *         description: Lista de usuários
+ *         description: A list of users
  *         content:
  *           application/json:
  *             schema:
@@ -28,15 +28,34 @@ const userRoutes = Router();
  *                 properties:
  *                   id:
  *                     type: string
- *                     description: ID do usuário
+ *                     description: User ID
  *                   name:
  *                     type: string
- *                     description: Nome do usuário
+ *                     description: User name
  */
 userRoutes.get("/", authenticateJWT, userController.getUsers);
 
-userRoutes.get("/", authenticateJWT, userController.getUsers);
-
+/**
+ * @swagger
+ * /api/v1/users/{id}:
+ *   get:
+ *     summary: Returns a user by ID
+ *     tags: [Users]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: User ID
+ *     responses:
+ *       200:
+ *         description: The user information
+ *       404:
+ *         description: User not found
+ */
 userRoutes.get(
   "/:id",
   authenticateJWT,
@@ -74,6 +93,8 @@ userRoutes.post(
  *   put:
  *     summary: Updates an existing user
  *     tags: [Users]
+ *     security:
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -107,6 +128,8 @@ userRoutes.put(
  *   delete:
  *     summary: Deletes a user by ID
  *     tags: [Users]
+ *     security:
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -127,6 +150,39 @@ userRoutes.delete(
   userController.deleteUser,
 );
 
+/**
+ * @swagger
+ * /api/v1/users/login:
+ *   post:
+ *     summary: Authenticates a user and returns a JWT token
+ *     tags: [Users]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               email:
+ *                 type: string
+ *                 description: User's email
+ *               password:
+ *                 type: string
+ *                 description: User's password
+ *     responses:
+ *       200:
+ *         description: User authenticated successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 token:
+ *                   type: string
+ *                   description: JWT token
+ *       401:
+ *         description: Authentication failed
+ */
 userRoutes.post("/login", userController.loginUser);
 
 export { userRoutes };

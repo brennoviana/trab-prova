@@ -2,9 +2,9 @@ const swaggerOptions = {
   swaggerDefinition: {
     openapi: '3.0.0',
     info: {
-      title: 'API de Exemplo',
+      title: 'API Trab-Prova',
       version: '1.0.0',
-      description: 'Documentação da API usando Swagger',
+      description: 'Api documentation for Trab-Prova',
     },
     components: {
       securitySchemes: {
@@ -54,7 +54,7 @@ const swaggerOptions = {
       },
     ],
   },
-  apis: ['src/modules/v1/users/routes/userRoutes.js'],
+  apis: ['src/modules/v1/**/routes/userRoutes.js'],
 };
 
 export { swaggerOptions };
