@@ -1,6 +1,6 @@
 import dotenv from 'dotenv';
 
-dotenv.config({ path: '../.env' });
+dotenv.config();
 
 export const config = {
   mongoUsername: process.env.MONGO_USERNAME,

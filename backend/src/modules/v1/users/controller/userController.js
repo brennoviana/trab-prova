@@ -27,7 +27,7 @@ class UserController {
 
       return ResponseFormatter.send(res, usersWithoutPasswords, 'Users found successfully.');
     } catch (error) {
-      ErrorHandler.formatResponse(res, error);
+      return ErrorHandler.formatResponse(res, error);
     }
   }
 
@@ -43,7 +43,7 @@ class UserController {
 
       return ResponseFormatter.send(res, userWithoutPassword, 'User retrieved successfully.');
     } catch (error) {
-      ErrorHandler.formatResponse(res, error);
+      return ErrorHandler.formatResponse(res, error);
     }
   }
 
@@ -60,7 +60,7 @@ class UserController {
         const duplicateField = Object.keys(error.keyValue)[0];
         return ErrorHandler.formatResponse(res, new DuplicateFieldError(duplicateField));
       }
-      ErrorHandler.formatResponse(res, error);
+      return ErrorHandler.formatResponse(res, error);
     }
   }
 
@@ -77,7 +77,7 @@ class UserController {
       if (error.code === 11000) {
         return ErrorHandler.formatResponse(res, new DuplicateFieldError('Email'));
       }
-      ErrorHandler.formatResponse(res, error);
+      return ErrorHandler.formatResponse(res, error);
     }
   }
 
@@ -91,7 +91,7 @@ class UserController {
 
       return ErrorHandler.formatResponse(res, new NotFoundError('User not found.'));
     } catch (error) {
-      ErrorHandler.formatResponse(res, error);
+      return ErrorHandler.formatResponse(res, error);
     }
   }
 
@@ -119,7 +119,7 @@ class UserController {
 
       return ResponseFormatter.send(res, { token }, 'Login successful.');
     } catch (error) {
-      ErrorHandler.formatResponse(res, error);
+      return ErrorHandler.formatResponse(res, error);
     }
   }
 }

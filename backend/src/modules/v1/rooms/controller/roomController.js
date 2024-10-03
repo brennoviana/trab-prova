@@ -17,7 +17,7 @@ class RoomController {
 
       return ResponseFormatter.send(res, rooms, 'Rooms found successfully.');
     } catch (error) {
-      ErrorHandler.formatResponse(res, error);
+      return ErrorHandler.formatResponse(res, error);
     }
   }
 
@@ -31,7 +31,7 @@ class RoomController {
         const duplicateField = Object.keys(error.keyValue)[0];
         return ErrorHandler.formatResponse(res, new DuplicateFieldError(duplicateField));
       }
-      ErrorHandler.formatResponse(res, error);
+      return ErrorHandler.formatResponse(res, error);
     }
   }
 
@@ -54,7 +54,7 @@ class RoomController {
 
       return ResponseFormatter.send(res, room, 'User joined the room successfully.');
     } catch (error) {
-      ErrorHandler.formatResponse(res, error);
+      return ErrorHandler.formatResponse(res, error);
     }
   }
 }
