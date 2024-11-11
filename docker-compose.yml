@@ -35,6 +35,19 @@ services:
     depends_on:
       - mongo
 
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    ports:
+      - "${PORT_FRONT}:${PORT_FRONT}"
+    environment:
+      - PORT=${PORT_FRONT}
+    networks:
+      - app-network
+    depends_on:
+      - express
+
 networks:
   app-network:
     driver: bridge
