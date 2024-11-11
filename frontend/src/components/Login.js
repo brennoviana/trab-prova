@@ -1,19 +1,20 @@
-// src/components/Login.js
 import React, { useState } from 'react';
 import { loginUser } from '../Api';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate} from 'react-router-dom';
 import './Form.css';
 
 const Login = () => {
-  const [username, setUsername] = useState('');
+  const navigate = useNavigate();
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await loginUser({ username, password });
+      const response = await loginUser({ email, password });
       alert('Login realizado com sucesso!');
       console.log(response.data);
+      navigate('/dashboard');
     } catch (error) {
       alert('Erro ao realizar login.');
     }
@@ -24,10 +25,10 @@ const Login = () => {
       <form onSubmit={handleLogin}>
         <h2>Login</h2>
         <input
-          type="text"
-          placeholder="Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          type="email"
+          placeholder="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
           required
         />
         <input
