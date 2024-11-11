@@ -23,6 +23,7 @@ services:
     ports:
       - "${PORT_API}:${PORT_API}"
     environment:
+      - JWT_SECRET=${JWT_SECRET}
       - PORT_API=${PORT_API}
       - MONGO_USERNAME=${MONGO_USERNAME}
       - MONGO_PASSWORD=${MONGO_PASSWORD}
