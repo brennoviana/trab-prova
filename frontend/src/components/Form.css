@@ -1,0 +1,68 @@
+/* Login.css e Register.css */
+
+.form-container {
+    max-width: 360px;
+    margin: 2rem auto;
+    padding: 1.5rem;
+    border-radius: 8px;
+    background-color: #f5f2fa;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  h2 {
+    font-family: Arial, sans-serif;
+    font-size: 1.6rem;
+    text-align: center;
+    color: #4a0d67;
+    margin-bottom: 1rem;
+  }
+  
+  input {
+    width: 100%;
+    padding: 0.8rem;
+    margin: 0.5rem 0;
+    border: 1px solid #c9b8d3;
+    border-radius: 6px;
+    font-size: 1rem;
+    background-color: #fafafa;
+    color: #4a0d67;
+    transition: border-color 0.2s ease;
+  }
+  
+  input:focus {
+    border-color: #7d3aa6;
+    outline: none;
+  }
+  
+  button {
+    width: 100%;
+    padding: 0.8rem;
+    margin-top: 1rem;
+    background-color: #7d3aa6;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #6a3292;
+  }
+  
+  .link {
+    display: block;
+    text-align: center;
+    margin-top: 1rem;
+    color: #7d3aa6;
+    text-decoration: none;
+    font-size: 0.9rem;
+  }
+  
+  .link:hover {
+    text-decoration: underline;
+    color: #4a0d67;
+  }
+  
